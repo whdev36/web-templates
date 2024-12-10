@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    position: relative;
+    background: #333;
+}
+
+.player {
+    position: absolute;
+    width: 700px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.player .top-navbar,
+.player .artist-control,
+.player .control-frame {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.top-navbar,
+.artist-control {
+    margin-bottom: 50px;
+}
+
+.top-navbar .back-btn,
+.top-navbar .like-btn,
+.artist-control .btn-shuffle,
+.artist-control .btn-infinite {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.top-navbar .status {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.img-frame {
+    margin-bottom: 30px;
+}
+
+.img-frame .music-img {
+    width: 340px;
+    display: block;
+    margin: 0 auto;
+    /* border-radius: 50%; */
+    object-fit: cover;
+}
+
+.artist-control .song span {
+    display: block;
+    color: #fff;
+    text-align: center;
+}
+
+.song .title {
+    font-size: 22px;
+}
+
+.song .artist {
+    font-size: 14px;
+}
+
+.control-frame {
+    padding: 0 50px;
+}
+
+.control-frame .btn-pause {
+    display: none;
+}
+
+.control-frame .btn {
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.control-frame .btn-play,
+.control-frame .btn-pause {
+    font-size: 70px;
+}
+
+@media screen and (max-width: 700px) {
+    .player {
+        width: 100%;
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .img-frame .music-img {
+        width: 280px;
+    }
+
+    .control-frame {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .control-frame .btn {
+        font-size: 30px;
+    }
+
+    .control-frame .btn-play,
+    .control-frame .btn-pause {
+        font-size: 50px;
+    }
+}

@@ -1,0 +1,94 @@
+<html lang="en">
+
+<head>
+    <!-- Meta configurations -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Music Player Website">
+    <meta name="author" content="Haydarbek Qodirboyev">
+    <meta name="keywords" content="music player, music, player, haydarbek qodirboyev">
+    <title>Music Player</title>
+    <!-- Include font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <!-- Local style -->
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- Player -->
+    <div class="player">
+        <!-- Navigation menu -->
+        <nav class="top-navbar">
+            <button type="button" class="back-btn">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <p class="status">Playing Now</p>
+            <button type="button" class="like-btn">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+        </nav>
+        <!-- /Navigation menu -->
+
+        <!-- Music image -->
+        <div class="img-frame">
+            <img src="https://cdn-images.dzcdn.net/images/cover/ed64ab1d6ced73a7ac50f99d0deea971/500x500.jpg"
+                alt="Music image" id="music-img" class="music-img">
+        </div>
+        <!-- /Music image -->
+
+        <!-- Artist control -->
+        <div class="artist-control">
+            <button type="button" class="btn-shuffle">
+                <i class="fa-solid fa-shuffle"></i>
+            </button>
+            <div class="song">
+                <span class="title">ENOUGH!</span>
+                <span class="artist">Eternxlkz</span>
+            </div>
+            <button type="button" class="btn-infinite">
+                <i class="fa-solid fa-infinity"></i>
+            </button>
+        </div>
+        <!-- /Artist control -->
+
+        <!-- Control music -->
+        <div class="control-frame">
+            <button type="button" class="btn btn-previous">
+                <i class="fa-solid fa-backward"></i>
+            </button>
+            <button type="button" class="btn btn-play">
+                <i class="fa-solid fa-play"></i>
+            </button>
+            <button type="button" class="btn btn-pause">
+                <i class="fa-solid fa-pause"></i>
+            </button>
+            <button type="button" class="btn btn-next">
+                <i class="fa-solid fa-forward"></i>
+            </button>
+        </div>
+        <!-- /Control music -->
+    </div>
+    <!-- /Player -->
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            var play = $('.btn-play');
+            var pause = $('.btn-pause');
+            var audio = new Audio('music.mp3')
+            play.click(() => {
+                audio.play();
+                pause.show();
+                play.hide();
+            });
+            pause.click(() => {
+                audio.pause();
+                play.show();
+                pause.hide();
+            });
+        });
+    </script>
+</body>
+
+</html>
