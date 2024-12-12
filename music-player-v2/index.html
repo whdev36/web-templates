@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Player -->
+    <div class="player">
+
+        <!-- Navbar -->
+        <div class="navbar">
+            <button type="button" class="btn btn-1">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <span>Playing now</span>
+            <button type="button" class="btn btn-2">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+        </div>
+        <!-- /Navbar -->
+
+        <!-- Animation -->
+        <div class="animation-bars">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <!-- /Animation -->
+
+        <!-- Control -->
+        <div class="control">
+
+            <!-- Previous button -->
+            <button type="button" class="btn btn-previous" id="previous">
+                <i class="fa-solid fa-backward"></i>
+            </button>
+
+            <!-- Play/Pause button -->
+            <button type="button" class="btn btn-toggle" id="toggle">
+                <i class="fa-solid fa-play"></i>
+            </button>
+
+            <!-- Next button -->
+            <button type="button" class="btn btn-next" id="next">
+                <i class="fa-solid fa-forward"></i>
+            </button>
+        </div>
+        <!-- /Control -->
+
+    </div>
+    <!-- /Player -->
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- /jQuery -->
+
+    <!-- Script -->
+    <script>
+        $(document).ready(() => {
+            let musics = [
+                'https://dl.dropboxusercontent.com/scl/fi/yqby90qapq8xbrqlyasfp/alan-walker.mp3?rlkey=1wvnet9u55o840n8jgnv5mdiv&st=50f17991',
+                'https://dl.dropboxusercontent.com/scl/fi/iwet19ku4tuihh9c6i5hk/astronomia.mp3?rlkey=rkc63rx8si1sttxknme0chuf1&st=39osc3x4',
+                'https://dl.dropboxusercontent.com/scl/fi/z52upku7s1r6714qu6gps/avicii-levels.mp3?rlkey=t49pn9w523uzmzbb10qd8ffjs&st=9nfh6qmt',
+                'https://dl.dropboxusercontent.com/scl/fi/fvcj5u89m1gd8o2oplans/marshmello-alone.mp3?rlkey=vx75y2nsft9vaxwt11jh81mz2&st=q3u08jb2',
+                'https://dl.dropboxusercontent.com/scl/fi/6v8g6swhqsao06injkzg3/martin-garrix-animals.mp3?rlkey=sp5bmb05otgvpv3hw2ubhsw3l&st=2v6y8c68',
+                'https://dl.dropboxusercontent.com/scl/fi/ae2l4fuqdl21ux86tjsjq/sparkee-strobe.mp3?rlkey=z5ojq3h426r7l9cnznpa92j47&st=rt93j2z3',
+            ];
+
+            let currentIndex = 0;
+            let audio = new Audio(musics[currentIndex]);
+            let isPlaying = false;
+
+            // Buttons
+            let toggleBtn = $('#toggle');
+            let nextBtn = $('#next');
+            let previousBtn = $('#previous');
+            let animationBars = $('.animation-bars span');
+
+            // Play/Pause Toggle
+            toggleBtn.on('click', () => {
+                if (isPlaying) {
+                    audio.pause();
+                    toggleBtn.html('<i class="fa-solid fa-play"></i>');
+                    animationBars.css('animation-play-state', 'paused');
+                } else {
+                    audio.play();
+                    toggleBtn.html('<i class="fa-solid fa-pause"></i>');
+                    animationBars.css('animation-play-state', 'running');
+                }
+                isPlaying = !isPlaying;
+            });
+
+            // Next Button
+            nextBtn.on('click', () => {
+                currentIndex = (currentIndex + 1) % musics.length;
+                audio.src = musics[currentIndex];
+                audio.play();
+                toggleBtn.html('<i class="fa-solid fa-pause"></i>');
+                animationBars.css('animation-play-state', 'running');
+                isPlaying = true;
+            });
+
+            // Previous Button
+            previousBtn.on('click', () => {
+                currentIndex = (currentIndex - 1 + musics.length) % musics.length;
+                audio.src = musics[currentIndex];
+                audio.play();
+                toggleBtn.html('<i class="fa-solid fa-pause"></i>');
+                animationBars.css('animation-play-state', 'running');
+                isPlaying = true;
+            });
+
+            // Automatically play the next track when the current one ends
+            audio.addEventListener('ended', () => {
+                currentIndex = (currentIndex + 1) % musics.length;
+                audio.src = musics[currentIndex];
+                audio.play();
+                animationBars.css('animation-play-state', 'running');
+            });
+        });
+    </script>
+    <!-- /Script -->
+</body>
+
+</html>
